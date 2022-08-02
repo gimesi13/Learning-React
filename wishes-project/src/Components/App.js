@@ -1,17 +1,14 @@
-//import react and the components, styles
+//import react and the components, styles, hooks
 
 import React, { useState, useEffect } from "react";
 import "./Styles/App.css";
 import WishButton from "./WishButton/WishButton";
-
-import HamburgerMenu from "./HamburgerMenu/HamburgerMenu";
-
-// const hasWish = wishes.length > 0;
+import WishLibrary from "./WishLibrary/WishLibrary";
 
 function App() {
   const [wishesState, setWishesState] = useState([]);
 
-  //useEffect to render API
+  //useEffect to fetch API
   useEffect(() => {
     fetch("https://type.fit/api/quotes")
       .then((res) => res.json())
@@ -19,12 +16,14 @@ function App() {
         const newWishes = dataArray.map((wish) => {
           return wish;
         });
-        setWishesState(dataArray);
+        setWishesState(newWishes);
       });
   }, []);
+
+  //return JSX
   return (
     <div>
-      <HamburgerMenu wishes={wishesState}></HamburgerMenu>
+      <WishLibrary wishes={wishesState}>LIBRARY</WishLibrary>
 
       <WishButton wishes={wishesState} />
     </div>

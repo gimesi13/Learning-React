@@ -1,23 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./WishLibrary.css";
+import SearchBar from "../SearchBar/SearchBar";
 
+//create component
 const WishLibrary = (props) => {
   //store wishes in a state
+  const wishprops = props.wishes;
   const [wishes, setWishes] = useState("");
 
-  //map trough wishes
-  const ShowLibrary = () => {
-    const randomWish = props.wishes.map((wish) => {
-      return wish; //this is still shit
-    });
-    console.log(randomWish.text);
-    setWishes(randomWish.text);
+  //display only after clicked and loaded
+
+  //const hasWishes = wishes.length > 0;
+
+  //backbutton function
+  /*const HandleBackButton = () => {
+    setWishes("");
+  };*/
+
+  const [shouldDisplay, setShouldDisplay] = useState(false);
+
+  const HandleClick = () => {
+    if (shouldDisplay === false) {
+      setShouldDisplay(true);
+    } else {
+      setShouldDisplay(false);
+    }
   };
 
   return (
-    <div onClick={ShowLibrary} className="WishLibrary">
-      {props.children}
-      <div>{wishes}</div>
+    <div className="container">
+      <div onClick={HandleClick} className="wish-library-button">
+        {props.children}
+      </div>
+
+      {shouldDisplay && (
+        <div className="wish-library">
+          {" "}
+          <h1>Wish Library</h1>
+          <div onClick={HandleClick} className="back-button">
+            BACK
+          </div>
+          <div className="searchbar-container">
+            {" "}
+            <SearchBar wishes={wishprops} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

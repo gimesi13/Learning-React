@@ -4,8 +4,15 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  background: url(https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
