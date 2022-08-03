@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "react-generate-unique-key-for-map": "^1.0.3",
-    "uuidv4": "^6.2.13"
-  }
-}
