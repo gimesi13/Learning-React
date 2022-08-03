@@ -33,6 +33,7 @@ function App() {
       <a
         href="https://github.com/gimesi13/Learning-React/tree/main/wishes-project"
         target="_blank"
+        rel="noreferrer"
       >
         <div className="github-logo"></div>
       </a>
@@ -41,6 +42,3 @@ function App() {
 }
 
 export default App;
-
-//styling
-//add github link to bottom
