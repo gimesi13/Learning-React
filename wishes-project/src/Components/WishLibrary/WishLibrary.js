@@ -6,16 +6,8 @@ import SearchBar from "../SearchBar/SearchBar";
 const WishLibrary = (props) => {
   //store wishes in a state
   const wishprops = props.wishes;
-  const [wishes, setWishes] = useState("");
 
   //display only after clicked and loaded
-
-  //const hasWishes = wishes.length > 0;
-
-  //backbutton function
-  /*const HandleBackButton = () => {
-    setWishes("");
-  };*/
 
   const [shouldDisplay, setShouldDisplay] = useState(false);
 
@@ -29,15 +21,15 @@ const WishLibrary = (props) => {
 
   return (
     <div className="container">
-      <div onClick={HandleClick} className="wish-library-button">
+      <div onClick={HandleClick} className="button-50">
         {props.children}
       </div>
 
       {shouldDisplay && (
         <div className="wish-library">
           {" "}
-          <h1>Wish Library</h1>
-          <div onClick={HandleClick} className="back-button">
+          <h1>Quote Library</h1>
+          <div onClick={HandleClick} className="button-35">
             BACK
           </div>
           <div className="searchbar-container">

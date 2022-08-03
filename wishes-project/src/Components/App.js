@@ -14,6 +14,9 @@ function App() {
       .then((res) => res.json())
       .then((dataArray) => {
         const newWishes = dataArray.map((wish) => {
+          if (wish.author === null) {
+            wish.author = "unknown";
+          }
           return wish;
         });
         setWishesState(newWishes);
@@ -26,8 +29,18 @@ function App() {
       <WishLibrary wishes={wishesState}>LIBRARY</WishLibrary>
 
       <WishButton wishes={wishesState} />
+
+      <a
+        href="https://github.com/gimesi13/Learning-React/tree/main/wishes-project"
+        target="_blank"
+      >
+        <div className="github-logo"></div>
+      </a>
     </div>
   );
 }
 
 export default App;
+
+//styling
+//add github link to bottom

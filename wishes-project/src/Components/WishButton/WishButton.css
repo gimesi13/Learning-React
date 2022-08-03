@@ -20,7 +20,7 @@ span a {
 span a:before,
 span a:after {
   position: absolute;
-  content: "DAILY WISH";
+  content: "DAILY QUOTE";
   height: 55px;
   width: 180px;
   display: flex;

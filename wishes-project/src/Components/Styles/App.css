@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  background: url(https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg);
+  background: url(https://img.freepik.com/free-vector/japanese-wave-line-art-landscape-background-abstract-mountain-banner-design-pattern-vector-illustration-geometric-poster_90220-715.jpg?w=1380&t=st%3D1658224713~exp%3D1658225313~hmac%3D75f3656f5cd711dbb2a3da197cc5e94c2367e420e78bf233a985f06fa0c4d908&fbclid=IwAR1w7pZ93EPwnvC-jX6KErRv5BIoAbfkAgKS6CeXIUv3vgusFhQPedc1gx0);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -15,4 +15,16 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+.github-logo {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  width: 32px;
+  height: 32px;
+  background-image: url(../GitHub-Mark-64px.png);
+  background-size: contain;
+}
+.github-logo:hover {
+  opacity: 0.8;
 }
