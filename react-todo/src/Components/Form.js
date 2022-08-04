@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import nextId from "react-id-generator";
 
-const Form = ({ setInputText, todos, setTodos, inputText }) => {
+const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
+  //capture input text in a state
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
@@ -9,11 +9,17 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
   const submitTodoHandler = (e) => {
     // prevent default is a fix for the submit buttons default behaviour which is refreshing the page and I don't wanna do that
     e.preventDefault();
+
+    // pass the input text in todos state
     setTodos([
       ...todos,
       { text: inputText, completed: false, id: Math.random() * 1000 },
     ]);
     setInputText("");
+  };
+
+  const statusHandler = (e) => {
+    setStatus(e.target.value);
   };
 
   return (
@@ -33,7 +39,7 @@ const Form = ({ setInputText, todos, setTodos, inputText }) => {
           <i className="fas fa-plus-square"></i>
         </button>
         <div className="select">
-          <select name="todos" className="filter-todo">
+          <select onChange={statusHandler} name="todos" className="filter-todo">
             <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="uncompleted">Uncompleted</option>
