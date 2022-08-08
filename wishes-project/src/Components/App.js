@@ -20,16 +20,12 @@ function App() {
   //switch for filtering favorites
   const filterHandler = () => {
     switch (status) {
-      case "favorite":
+      case "favorites":
         setFilteredWishes(wishesState.filter((wish) => wish.favorite === true));
-        break;
-      case "notFavorite":
-        setFilteredWishes(
-          wishesState.filter((wish) => wish.favorite === false)
-        );
         break;
       default:
         setFilteredWishes(wishesState);
+        break;
     }
   };
 
@@ -58,7 +54,14 @@ function App() {
   //return JSX
   return (
     <div>
-      <WishLibrary wishes={wishesState}>LIBRARY</WishLibrary>
+      <WishLibrary
+        setWishesState={setWishesState}
+        setStatus={setStatus}
+        filteredWishes={filteredWishes}
+        wishes={wishesState}
+      >
+        LIBRARY
+      </WishLibrary>
 
       <WishButton setWishesState={setWishesState} wishes={wishesState} />
 
@@ -75,7 +78,5 @@ function App() {
 
 export default App;
 
-// favorite function
-// switch function in app.js for filtering favorite marked quotes
-
+//styling
 //local storage

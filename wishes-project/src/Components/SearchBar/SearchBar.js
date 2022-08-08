@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SearchBar.css";
 
 const SearchBar = (props) => {
-  const wishes = props.wishes;
+  const wishes = props.filteredWishes;
 
   //useState to store search value
   const [searchValue, setSearchValue] = useState("");
@@ -60,12 +60,31 @@ const SearchBar = (props) => {
       </div>
 
       <ul>
-        {filteredWishes.slice(0, visible).map((wish, favorite) => {
-          let id = Math.random() * 1000;
+        {filteredWishes.slice(0, visible).map((wish, id, favorite) => {
           return (
-            <li favorite={false} id={id} key={id}>
-              {"“" + wish.text + "” "}
+            <li
+              className={`wish-item ${wish.favorite ? "favorite" : ""}`}
+              id={id}
+              key={id}
+            >
+              <div className="wish-text">{"“" + wish.text + "” "}</div>
               {"-" + wish.author}
+
+              <button
+                className={`star lib ${wish.favorite ? "full" : ""}`}
+                onClick={() => {
+                  props.setWishesState(
+                    props.wishes.map((thisWish) => {
+                      if (wish.id === thisWish.id) {
+                        return { ...wish, favorite: !wish.favorite };
+                      }
+                      return thisWish;
+                    })
+                  );
+                }}
+              >
+                {` ${wish.favorite ? "★" : "☆"}`}
+              </button>
             </li>
           );
         })}

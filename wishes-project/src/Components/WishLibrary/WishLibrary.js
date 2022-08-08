@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./WishLibrary.css";
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -17,6 +17,13 @@ const WishLibrary = (props) => {
     } else {
       setShouldDisplay(false);
     }
+    props.setStatus("all");
+  };
+
+  //status handler for filtering favorites
+
+  const statusHandler = (e) => {
+    props.setStatus(e.target.value);
   };
 
   return (
@@ -34,7 +41,15 @@ const WishLibrary = (props) => {
           </div>
           <div className="searchbar-container">
             {" "}
-            <SearchBar wishes={wishprops} />
+            <SearchBar
+              setWishesState={props.setWishesState}
+              filteredWishes={props.filteredWishes}
+              wishes={wishprops}
+            />
+            <select className="select" onChange={statusHandler}>
+              <option value="all">All</option>
+              <option value="favorites">Favorites</option>
+            </select>
           </div>
         </div>
       )}
