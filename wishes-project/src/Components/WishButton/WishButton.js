@@ -20,6 +20,19 @@ const WishButton = (props) => {
   //conditional rendering
   const hasWishes = newWish.length !== 0;
 
+  const favoriteHandler = () => {
+    props.setWishesState(
+      props.wishes.map((wish) => {
+        if (wish.id === newWish.id) {
+          //!. wish.favorite changes completed bolean to the opposite (true), this is also responsible for toggling
+          return { ...wish, favorite: !wish.favorite };
+        }
+        // else return the original
+        return wish;
+      })
+    );
+  };
+
   //return JSX
   return (
     <div className="wish-button-container">
@@ -35,6 +48,7 @@ const WishButton = (props) => {
             {"“" + newWish.text + "” "}
             {"-" + newWish.author}
           </MyWish>
+          <button onClick={favoriteHandler}>fav</button>
         </div>
       )}
     </div>

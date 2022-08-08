@@ -60,9 +60,10 @@ const SearchBar = (props) => {
       </div>
 
       <ul>
-        {filteredWishes.slice(0, visible).map((wish, i) => {
+        {filteredWishes.slice(0, visible).map((wish, favorite) => {
+          let id = Math.random() * 1000;
           return (
-            <li key={i}>
+            <li favorite={false} id={id} key={id}>
               {"“" + wish.text + "” "}
               {"-" + wish.author}
             </li>
