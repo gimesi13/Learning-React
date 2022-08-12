@@ -40,6 +40,17 @@ const SearchBar = (props) => {
   // conditional rendering for load more
   const canLoadMore = filteredWishes.length > visible;
 
+  //favoritehandler
+  /*const favoriteHandler = () => {
+    props.wishes.map((wish) => {
+      if (wish.id === props.newWish.id) {
+        props.setNewWish(wish);
+        console.log(props.newWish);
+        console.log("this is the displayed wish");
+      }
+    });
+  };*/
+
   //JSX text
   return (
     <div className="searchbar-body">

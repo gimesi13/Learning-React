@@ -1,5 +1,6 @@
 /*custom style for the main button*/
-span {
+.main-button {
+  cursor: pointer;
   position: relative;
   display: inline-flex;
   width: 180px;
@@ -7,9 +8,9 @@ span {
   margin: 0 15px;
   perspective: 1000px;
 }
-span:active {
+.main-button:active {
 }
-span a {
+.main-button a {
   font-size: 19px;
   letter-spacing: 1px;
   transform-style: preserve-3d;
@@ -17,8 +18,8 @@ span a {
   transition: transform 0.25s;
   font-family: "Montserrat", sans-serif;
 }
-span a:before,
-span a:after {
+.main-button a:before,
+.main-button a:after {
   position: absolute;
   content: "DAILY QUOTE";
   height: 55px;
@@ -30,16 +31,16 @@ span a:after {
   box-sizing: border-box;
   border-radius: 5px;
 }
-span a:before {
+.main-button a:before {
   color: #fff;
   background: #000;
   transform: rotateY(0deg) translateZ(25px);
 }
-span a:after {
+.main-button a:after {
   color: #000;
   transform: rotateX(90deg) translateZ(25px);
 }
-span a:hover {
+.main-button a:hover {
   transform: translateZ(-25px) rotateX(-90deg);
 }
 

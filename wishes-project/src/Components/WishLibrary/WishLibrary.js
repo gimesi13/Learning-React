@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./WishLibrary.css";
 import SearchBar from "../SearchBar/SearchBar";
 
 //create component
 const WishLibrary = (props) => {
   //store wishes in a state
-  const wishprops = props.wishes;
 
   //display only after clicked and loaded
 
@@ -42,9 +41,11 @@ const WishLibrary = (props) => {
           <div className="searchbar-container">
             {" "}
             <SearchBar
+              setNewWish={props.setNewWish}
+              newWish={props.newWish}
               setWishesState={props.setWishesState}
               filteredWishes={props.filteredWishes}
-              wishes={wishprops}
+              wishes={props.wishes}
             />
             <select className="select" onChange={statusHandler}>
               <option value="all">All</option>
