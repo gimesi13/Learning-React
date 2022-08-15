@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./WishLibrary.css";
 import SearchBar from "../SearchBar/SearchBar";
+import { motion } from "framer-motion";
 
 //create component
 const WishLibrary = (props) => {
@@ -27,9 +28,15 @@ const WishLibrary = (props) => {
 
   return (
     <div className="container">
-      <div onClick={HandleClick} className="button-50">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ type: "spring", stiffness: 60, delay: 1.2, duration: 1 }}
+        onClick={HandleClick}
+        className="button-50"
+      >
         {props.children}
-      </div>
+      </motion.div>
 
       {shouldDisplay && (
         <div className="wish-library">

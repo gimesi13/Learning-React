@@ -4,11 +4,12 @@ import React, { useState, useEffect } from "react";
 import "./Styles/App.css";
 import WishButton from "./WishButton/WishButton";
 import WishLibrary from "./WishLibrary/WishLibrary";
+import { motion } from "framer-motion";
 
 function App() {
   // run once when the app starts place it over everything so it goes in the state first (fetches data from local storage),  put the function in the wishesState state so it is the data the page starts working with when it loads
   const getLocalWishes = () => {
-    const wishLocal = localStorage.getItem("wishes");
+    const wishLocal = window.localStorage.getItem("wishes");
     return wishLocal ? JSON.parse(wishLocal) : [];
   };
 
@@ -50,7 +51,12 @@ function App() {
 
   //useEffect to fetch API
   useEffect(() => {
-    if (wishesState.length !== null) {
+    console.log(wishesState.length);
+    if (
+      wishesState.length === null ||
+      wishesState.length === undefined ||
+      wishesState.length === 0
+    ) {
       fetch("https://type.fit/api/quotes")
         .then((res) => res.json())
         .then((dataArray) => {
@@ -75,7 +81,7 @@ function App() {
 
   //save to local storage
   useEffect(() => {
-    localStorage.setItem("wishes", JSON.stringify(wishesState));
+    window.localStorage.setItem("wishes", JSON.stringify(wishesState));
   }, [wishesState]);
 
   //return JSX
@@ -104,7 +110,12 @@ function App() {
         target="_blank"
         rel="noreferrer"
       >
-        <div className="github-logo"></div>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: "spring", stiffness: 60, delay: 1, duration: 1 }}
+          className="github-logo"
+        ></motion.div>
       </a>
     </div>
   );

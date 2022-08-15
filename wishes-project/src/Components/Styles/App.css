@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:600&display=swap");
+html {
+  overflow-x: hidden;
+}
 body {
   font-size: 1.5em;
   margin: 0;
@@ -24,9 +27,6 @@ body {
   height: 32px;
   background-image: url(../GitHub-Mark-64px.png);
   background-size: contain;
-}
-.github-logo:hover {
-  opacity: 0.8;
 }
 
 .favorite {

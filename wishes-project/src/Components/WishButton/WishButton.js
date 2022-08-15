@@ -1,11 +1,13 @@
 //import react,css
 import React from "react";
 import "./WishButton.css";
+import { motion, useAnimation } from "framer-motion";
 
 const WishButton = (props) => {
-  //use useState to store state of the random wish generated
+  //useanimation hook for animatzion new wishes
+  const control = useAnimation();
 
-  //handle click event
+  //handle click event + control animation
   const GenerateWish = () => {
     //random logic
     const randomWish =
@@ -13,6 +15,12 @@ const WishButton = (props) => {
 
     //update state
     props.setNewWish(randomWish);
+
+    //ANIMATION CONTROLS
+
+    control.start({
+      opacity: [0, 1],
+    });
   };
 
   //conditional rendering
@@ -34,28 +42,67 @@ const WishButton = (props) => {
     props.setNewWish({ ...props.newWish, favorite: !props.newWish.favorite });
   };
 
+  //ANIMATIONS//
+  const boxVariant = {
+    hidden: {
+      scale: 0,
+    },
+    /* animate before children makes the children wait with its animation until parent is done with it*/
+    visible: { scale: 1, transition: { delay: 0, when: "beforeChildren" } },
+  };
+
+  const starVariant = {
+    hidden: {
+      x: 10,
+      opacity: 0,
+    },
+    /*staggerChildren makes the next child wait until the previous is done with its animation*/
+    visible: {
+      x: 0,
+      opacity: 1,
+      borderRadius: ["10%", "50%", "50%", "10%"],
+    },
+  };
+
   //return JSX
   return (
     <div className="wish-button-container">
       <div className="wish-button">
-        <div className="main-button" onClick={GenerateWish}>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 60,
+          }}
+          whileTap={{ scale: 0.9 }}
+          className="main-button"
+          onClick={GenerateWish}
+        >
           <a></a>
-        </div>
+        </motion.div>
       </div>
 
       {hasWishes && (
-        <div className="myWish.container">
-          <div className={`myWish ${props.newWish.favorite ? "favorite" : ""}`}>
+        <motion.div animate={control} className="myWish.container">
+          <motion.div
+            variants={boxVariant}
+            animate="visible"
+            initial="hidden"
+            className={`myWish ${props.newWish.favorite ? "favorite" : ""}`}
+          >
             {"“" + props.newWish.text + "” "}
             {"-" + props.newWish.author}
-            <button
+            <motion.button
+              variants={starVariant}
+              transition={{ delay: 0.3 }}
               className={`star ${props.newWish.favorite ? "full" : ""}`}
               onClick={favoriteHandler}
             >
               {` ${props.newWish.favorite ? "★" : "☆"}`}
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       )}
     </div>
   );
