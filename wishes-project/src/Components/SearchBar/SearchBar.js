@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEfect } from "react";
 import "./SearchBar.css";
+import { motion, useAnimation } from "framer-motion";
 
 const SearchBar = (props) => {
   const wishes = props.filteredWishes;
@@ -12,6 +13,7 @@ const SearchBar = (props) => {
   //eventlistener
   const ListenToChange = (e) => {
     setSearchValue(e.target.value);
+    //animation for search items
   };
 
   //filter the array to find if it includes the search value
@@ -51,6 +53,8 @@ const SearchBar = (props) => {
     });
   };*/
 
+  ///ANIMATIONS///
+
   //JSX text
   return (
     <div className="searchbar-body">
@@ -70,36 +74,46 @@ const SearchBar = (props) => {
         )}
       </div>
 
-      <ul>
-        {filteredWishes.slice(0, visible).map((wish, id, favorite) => {
-          return (
-            <li
-              className={`wish-item ${wish.favorite ? "favorite" : ""}`}
-              id={id}
-              key={id}
-            >
-              <div className="wish-text">{"“" + wish.text + "” "}</div>
-              {"-" + wish.author}
-
-              <button
-                className={`star lib ${wish.favorite ? "full" : ""}`}
-                onClick={() => {
-                  props.setWishesState(
-                    props.wishes.map((thisWish) => {
-                      if (wish.id === thisWish.id) {
-                        return { ...wish, favorite: !wish.favorite };
-                      }
-                      return thisWish;
-                    })
-                  );
+      {props.showLibrary ? (
+        <ul>
+          {filteredWishes.slice(0, visible).map((wish, id, favorite) => {
+            return (
+              <motion.li
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  delay: (id - (visible - 15)) * 0.05,
+                  when: "beforeChildren",
                 }}
+                className={`wish-item ${wish.favorite ? "favorite" : ""}`}
+                id={id}
+                key={id}
               >
-                {` ${wish.favorite ? "★" : "☆"}`}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+                <div className="wish-text">{"“" + wish.text + "” "}</div>
+                {"-" + wish.author}
+
+                <button
+                  className={`star lib ${wish.favorite ? "full" : ""}`}
+                  onClick={() => {
+                    props.setWishesState(
+                      props.wishes.map((thisWish) => {
+                        if (wish.id === thisWish.id) {
+                          return { ...wish, favorite: !wish.favorite };
+                        }
+                        return thisWish;
+                      })
+                    );
+                  }}
+                >
+                  {` ${wish.favorite ? "★" : "☆"}`}
+                </button>
+              </motion.li>
+            );
+          })}
+        </ul>
+      ) : (
+        ""
+      )}
       {canLoadMore && (
         <button className="load-more-button button-59" onClick={showMoreItems}>
           Load more

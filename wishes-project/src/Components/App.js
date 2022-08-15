@@ -88,6 +88,7 @@ function App() {
   return (
     <div>
       <WishLibrary
+        status={status}
         setNewWish={setNewWish}
         newWish={newWish}
         setWishesState={setWishesState}
@@ -113,7 +114,12 @@ function App() {
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ type: "spring", stiffness: 60, delay: 1, duration: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 60,
+            delay: 0.5,
+            duration: 1,
+          }}
           className="github-logo"
         ></motion.div>
       </a>

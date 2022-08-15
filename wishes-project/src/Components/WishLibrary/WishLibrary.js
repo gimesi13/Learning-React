@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import "./WishLibrary.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 //create component
 const WishLibrary = (props) => {
-  //store wishes in a state
-
+  //animation states
+  const [showLibrary, setShowLibrary] = useState(false);
   //display only after clicked and loaded
 
-  const [shouldDisplay, setShouldDisplay] = useState(false);
+  /*   const [shouldDisplay, setShouldDisplay] = useState(false); */
 
   const HandleClick = () => {
-    if (shouldDisplay === false) {
+    setShowLibrary(!showLibrary);
+    /* if (shouldDisplay === false) {
       setShouldDisplay(true);
     } else {
       setShouldDisplay(false);
-    }
-    props.setStatus("all");
+    } */
   };
 
   //status handler for filtering favorites
@@ -31,23 +31,28 @@ const WishLibrary = (props) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ type: "spring", stiffness: 60, delay: 1.2, duration: 1 }}
+        transition={{ type: "spring", stiffness: 60, delay: 0.5, duration: 1 }}
         onClick={HandleClick}
         className="button-50"
       >
         {props.children}
       </motion.div>
 
-      {shouldDisplay && (
-        <div className="wish-library">
-          {" "}
+      {
+        /* shouldDisplay && ( */
+        <motion.div
+          initial={{ y: "-100%" }}
+          animate={{ y: showLibrary ? 0 : "-100%" }}
+          className="wish-library"
+        >
           <h1>Quote Library</h1>
           <div onClick={HandleClick} className="button-35">
             BACK
           </div>
           <div className="searchbar-container">
-            {" "}
             <SearchBar
+              showLibrary={showLibrary}
+              status={props.status}
               setNewWish={props.setNewWish}
               newWish={props.newWish}
               setWishesState={props.setWishesState}
@@ -59,8 +64,9 @@ const WishLibrary = (props) => {
               <option value="favorites">Favorites</option>
             </select>
           </div>
-        </div>
-      )}
+        </motion.div>
+        /* ) */
+      }
     </div>
   );
 };
