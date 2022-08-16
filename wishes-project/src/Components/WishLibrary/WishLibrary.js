@@ -43,14 +43,16 @@ const WishLibrary = (props) => {
         <motion.div
           initial={{ y: "-100%" }}
           animate={{ y: showLibrary ? 0 : "-100%" }}
+          transition={{ duration: 1, type: "spring", bounce: 0.4 }}
           className="wish-library"
         >
-          <h1>Quote Library</h1>
+          <h1>Library:</h1>
           <div onClick={HandleClick} className="button-35">
             BACK
           </div>
           <div className="searchbar-container">
             <SearchBar
+              statusHandler={statusHandler}
               showLibrary={showLibrary}
               status={props.status}
               setNewWish={props.setNewWish}
@@ -59,10 +61,6 @@ const WishLibrary = (props) => {
               filteredWishes={props.filteredWishes}
               wishes={props.wishes}
             />
-            <select className="select" onChange={statusHandler}>
-              <option value="all">All</option>
-              <option value="favorites">Favorites</option>
-            </select>
           </div>
         </motion.div>
         /* ) */

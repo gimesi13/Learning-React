@@ -1,11 +1,15 @@
 //import react,css
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./WishButton.css";
 import { motion, useAnimation } from "framer-motion";
 
 const WishButton = (props) => {
-  //useanimation hook for animatzion new wishes
+  //
+  const [clicked, setClicked] = useState(false);
+
+  //useAnimation hook for animation new wishes
   const control = useAnimation();
+  const controlStar = useAnimation();
 
   //handle click event + control animation
   const GenerateWish = () => {
@@ -15,12 +19,7 @@ const WishButton = (props) => {
 
     //update state
     props.setNewWish(randomWish);
-
-    //ANIMATION CONTROLS
-
-    control.start({
-      opacity: [0, 1],
-    });
+    setClicked(!clicked);
   };
 
   //conditional rendering
@@ -43,26 +42,49 @@ const WishButton = (props) => {
   };
 
   //ANIMATIONS//
-  const boxVariant = {
+  //ANIMATION CONTROLS
+  useEffect(() => {
+    control.start({
+      scale: [0, 1, 0.9, 1],
+      transition: { duration: 0.8 },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    controlStar.start({
+      x: [600, 600, 600, 600, 600, -20, 0, -10, -10, -10],
+      opacity: [0, 1],
+      borderRadius: ["10%", "10%", "10%", "50%", "50%", "20%"],
+      transition: { duration: 1.5 },
+    });
+  }, [clicked]);
+
+  /*   const boxVariant = {
     hidden: {
       scale: 0,
     },
-    /* animate before children makes the children wait with its animation until parent is done with it*/
-    visible: { scale: 1, transition: { delay: 0, when: "beforeChildren" } },
-  };
+    // animate before children makes the children wait with its animation until parent is done with it
+    visible: {
+      scale: 1,
+      transition: {
+        type: "spring",
+        bounce: 0.5,
+        duration: 0.5,
+        when: "beforeChildren",
+      },
+    },
+  }; */
 
-  const starVariant = {
+  /*   const starVariant = {
     hidden: {
       x: 10,
       opacity: 0,
     },
-    /*staggerChildren makes the next child wait until the previous is done with its animation*/
+    //staggerChildren makes the next child wait until the previous is done with its animation
     visible: {
       x: 0,
       opacity: 1,
       borderRadius: ["10%", "50%", "50%", "10%"],
     },
-  };
+  }; */
 
   //return JSX
   return (
@@ -73,7 +95,7 @@ const WishButton = (props) => {
           animate={{ scale: 1 }}
           transition={{
             type: "spring",
-            stiffness: 60,
+            bounce: 0.5,
           }}
           whileTap={{ scale: 0.9 }}
           className="main-button"
@@ -86,16 +108,13 @@ const WishButton = (props) => {
       {hasWishes && (
         <motion.div animate={control} className="myWish.container">
           <motion.div
-            variants={boxVariant}
-            animate="visible"
-            initial="hidden"
             className={`myWish ${props.newWish.favorite ? "favorite" : ""}`}
           >
             {"“" + props.newWish.text + "” "}
             {"-" + props.newWish.author}
             <motion.button
-              variants={starVariant}
-              transition={{ delay: 0.3 }}
+              animate={controlStar}
+              /* variants={starVariant} */
               className={`star ${props.newWish.favorite ? "full" : ""}`}
               onClick={favoriteHandler}
             >

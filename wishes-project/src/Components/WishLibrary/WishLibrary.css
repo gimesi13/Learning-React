@@ -15,8 +15,8 @@
   gap: 0.5em;
 }
 .wish-library h1 {
-  text-align: center;
-  font-size: 1.3em;
+  margin-left: 3rem;
+  font-size: 2.5rem;
   margin-bottom: 2em;
 }
 .wish-library {
@@ -24,8 +24,11 @@
 
   z-index: 1;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: -300px;
+  padding-top: 350px;
+
+  bottom: -300px;
+  padding-bottom: 500px;
   right: 0;
   left: 0;
 
@@ -72,8 +75,8 @@
 
 .button-35 {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  top: 385px;
+  right: 2em;
   align-items: center;
   background-color: #fff;
   border-radius: 12px;

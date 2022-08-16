@@ -115,11 +115,15 @@ function App() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
+            x: { delay: 0.5 },
+            opacity: { delay: 0.5 },
+            scale: { duration: 0.2 },
             type: "spring",
             stiffness: 60,
-            delay: 0.5,
-            duration: 1,
+            duration: 1.6,
           }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 1 }}
           className="github-logo"
         ></motion.div>
       </a>

@@ -67,10 +67,14 @@ const SearchBar = (props) => {
           onChange={ListenToChange}
           placeholder="Search..."
         />
+        <select className="select" onChange={props.statusHandler}>
+          <option value="all">All</option>
+          <option value="favorites">Favorites</option>
+        </select>
         {ShouldDisplayButton && (
-          <div className="button-59" onClick={HandleClearButton}>
+          <motion.div className="button-59" onClick={HandleClearButton}>
             clear
-          </div>
+          </motion.div>
         )}
       </div>
 
