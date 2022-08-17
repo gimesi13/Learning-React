@@ -1,6 +1,7 @@
-import React, { useState, useEfect } from "react";
+import React, { useState } from "react";
 import "./SearchBar.css";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const SearchBar = (props) => {
   const wishes = props.filteredWishes;
@@ -108,7 +109,7 @@ const SearchBar = (props) => {
                 <div className="wish-text">{"“" + wish.text + "” "}</div>
                 {"-" + wish.author}
 
-                <motion.button
+                <motion.div
                   whileTap={{ scale: 1 }}
                   whileHover={{ scale: 1.1 }}
                   className={`star lib ${wish.favorite ? "full" : ""}`}
@@ -123,8 +124,8 @@ const SearchBar = (props) => {
                     );
                   }}
                 >
-                  {` ${wish.favorite ? "★" : "☆"}`}
-                </motion.button>
+                  {wish.favorite ? <AiFillStar /> : <AiOutlineStar />}
+                </motion.div>
               </motion.li>
             );
           })}

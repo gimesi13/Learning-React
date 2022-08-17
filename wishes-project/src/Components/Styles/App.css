@@ -33,7 +33,7 @@ body {
 }
 
 .favorite {
-  color: red;
+  color: rgb(14, 0, 143);
 }
 .myWish {
   position: relative;
@@ -50,24 +50,30 @@ body {
 }
 
 .star {
+  display: flex;
   position: absolute;
   top: -1.3em;
   right: -1em;
   border: none;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
   cursor: pointer;
   border-radius: 20%;
+  padding: 2px;
+  background-color: rgba(255, 255, 255, 0.582);
+  font-size: 1rem;
+  transition: background-color 0.4s;
 }
 
 .star:hover {
-  background-color: rgb(255, 255, 0);
+  background-color: rgba(255, 255, 0, 0.8);
 }
 .lib {
   top: 0;
   right: -2em;
 }
 .full {
-  background-color: rgb(255, 255, 0);
+  color: black;
+  background-color: rgba(255, 255, 0, 0.8);
 }
 
 .wish-item {

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import "./WishButton.css";
 import { motion, useAnimation } from "framer-motion";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const WishButton = (props) => {
   //states
@@ -90,15 +91,15 @@ const WishButton = (props) => {
           >
             {"“" + props.newWish.text + "” "}
             {"-" + props.newWish.author}
-            <motion.button
+            <motion.div
               animate={controlStar}
               whileTap={{ scale: 1 }}
               whileHover={{ scale: 1.1 }}
               className={`star ${props.newWish.favorite ? "full" : ""}`}
               onClick={favoriteHandler}
             >
-              {` ${props.newWish.favorite ? "★" : "☆"}`}
-            </motion.button>
+              {props.newWish.favorite ? <AiFillStar /> : <AiOutlineStar />}
+            </motion.div>
           </motion.div>
         </motion.div>
       )}

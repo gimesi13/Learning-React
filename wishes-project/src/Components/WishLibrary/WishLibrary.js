@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./WishLibrary.css";
 import SearchBar from "../SearchBar/SearchBar";
 import { motion, useAnimation } from "framer-motion";
+import bookicon from "../undraw_bibliophile_re_xarc.svg";
 
 //create component
 const WishLibrary = (props) => {
@@ -46,7 +47,11 @@ const WishLibrary = (props) => {
           transition={{ duration: 1, type: "spring", bounce: 0.4 }}
           className="wish-library"
         >
-          <h1>Library:</h1>
+          <div className="library-header">
+            <img className="book-icon" src={bookicon} alt="bookicon" />
+            <h1>Library:</h1>
+          </div>
+
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
