@@ -4,13 +4,17 @@ import "./WishButton.css";
 import { motion, useAnimation } from "framer-motion";
 
 const WishButton = (props) => {
-  //
+  //states
   const [clicked, setClicked] = useState(false);
 
   //useAnimation hook for animation new wishes
   const control = useAnimation();
   const controlStar = useAnimation();
 
+  //conditional rendering
+  const hasWishes = props.newWish.length !== 0;
+
+  ////FUNCTIONS////
   //handle click event + control animation
   const GenerateWish = () => {
     //random logic
@@ -21,9 +25,6 @@ const WishButton = (props) => {
     props.setNewWish(randomWish);
     setClicked(!clicked);
   };
-
-  //conditional rendering
-  const hasWishes = props.newWish.length !== 0;
 
   //favorite handler
   const favoriteHandler = () => {
@@ -37,54 +38,31 @@ const WishButton = (props) => {
         return wish;
       })
     );
-
     props.setNewWish({ ...props.newWish, favorite: !props.newWish.favorite });
   };
 
   //ANIMATIONS//
   //ANIMATION CONTROLS
   useEffect(() => {
+    control.set({ scale: 0 });
     control.start({
-      scale: [0, 1, 0.9, 1],
-      transition: { duration: 0.8 },
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    controlStar.start({
-      x: [600, 600, 600, 600, 600, -20, 0, -10, -10, -10],
-      opacity: [0, 1],
-      borderRadius: ["10%", "10%", "10%", "50%", "50%", "20%"],
-      transition: { duration: 1.5 },
-    });
-  }, [clicked]);
-
-  /*   const boxVariant = {
-    hidden: {
-      scale: 0,
-    },
-    // animate before children makes the children wait with its animation until parent is done with it
-    visible: {
       scale: 1,
+      transition: { duration: 0.8, type: "spring", bounce: 0.5 },
+    });
+    controlStar.set({ opacity: 0, x: 600 });
+    controlStar.start({
+      opacity: 1,
+      x: 0,
+      borderRadius: ["10%", "10%", "50%", "50%", "20%", "20%"],
       transition: {
         type: "spring",
-        bounce: 0.5,
-        duration: 0.5,
-        when: "beforeChildren",
+        bounce: 0.4,
+        delay: 0.4,
+        borderRadius: { duration: 1.3 },
       },
-    },
-  }; */
-
-  /*   const starVariant = {
-    hidden: {
-      x: 10,
-      opacity: 0,
-    },
-    //staggerChildren makes the next child wait until the previous is done with its animation
-    visible: {
-      x: 0,
-      opacity: 1,
-      borderRadius: ["10%", "50%", "50%", "10%"],
-    },
-  }; */
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [clicked]);
 
   //return JSX
   return (
@@ -114,7 +92,8 @@ const WishButton = (props) => {
             {"-" + props.newWish.author}
             <motion.button
               animate={controlStar}
-              /* variants={starVariant} */
+              whileTap={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
               className={`star ${props.newWish.favorite ? "full" : ""}`}
               onClick={favoriteHandler}
             >

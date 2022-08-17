@@ -47,9 +47,14 @@ const WishLibrary = (props) => {
           className="wish-library"
         >
           <h1>Library:</h1>
-          <div onClick={HandleClick} className="button-35">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={HandleClick}
+            className="button-35"
+          >
             BACK
-          </div>
+          </motion.div>
           <div className="searchbar-container">
             <SearchBar
               statusHandler={statusHandler}

@@ -78,17 +78,16 @@
   top: 385px;
   right: 2em;
   align-items: center;
-  background-color: #fff;
+  background-color: black;
   border-radius: 12px;
   box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
   box-sizing: border-box;
-  color: #121212;
+  color: white;
   cursor: pointer;
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
   font-size: 1.2rem;
-  font-weight: 700;
   justify-content: center;
   line-height: 1;
   margin: 0;
@@ -104,9 +103,6 @@
   touch-action: manipulation;
 }
 
-.button-35:hover {
-  box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
-}
 /*libraray button*/
 .button-50 {
   position: absolute;

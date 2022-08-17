@@ -1,6 +1,6 @@
 import React, { useState, useEfect } from "react";
 import "./SearchBar.css";
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 
 const SearchBar = (props) => {
   const wishes = props.filteredWishes;
@@ -53,8 +53,6 @@ const SearchBar = (props) => {
     });
   };*/
 
-  ///ANIMATIONS///
-
   //JSX text
   return (
     <div className="searchbar-body">
@@ -71,11 +69,25 @@ const SearchBar = (props) => {
           <option value="all">All</option>
           <option value="favorites">Favorites</option>
         </select>
-        {ShouldDisplayButton && (
-          <motion.div className="button-59" onClick={HandleClearButton}>
-            clear
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {ShouldDisplayButton && (
+            <motion.div
+              key="clearbutton"
+              initial={{ opacity: 0, x: 300 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.1 }}
+              exit={{
+                opacity: 0,
+                x: 300,
+                transition: { duration: 0.1, ease: "easeInOut" },
+              }}
+              className="button-59"
+              onClick={HandleClearButton}
+            >
+              clear
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {props.showLibrary ? (
@@ -96,7 +108,9 @@ const SearchBar = (props) => {
                 <div className="wish-text">{"“" + wish.text + "” "}</div>
                 {"-" + wish.author}
 
-                <button
+                <motion.button
+                  whileTap={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
                   className={`star lib ${wish.favorite ? "full" : ""}`}
                   onClick={() => {
                     props.setWishesState(
@@ -110,7 +124,7 @@ const SearchBar = (props) => {
                   }}
                 >
                   {` ${wish.favorite ? "★" : "☆"}`}
-                </button>
+                </motion.button>
               </motion.li>
             );
           })}
