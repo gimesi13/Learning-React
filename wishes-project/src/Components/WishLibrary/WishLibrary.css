@@ -15,33 +15,41 @@
   gap: 0.5em;
 }
 .wish-library h1 {
-  text-align: center;
-  font-size: 1.3em;
-  margin-bottom: 2em;
+  margin-left: -3.5rem;
+  font-size: 2.5rem;
+  display: inline-block;
+  align-self: flex-end;
 }
 .wish-library {
-  padding-bottom: 300px;
-
   z-index: 1;
   position: fixed;
-  top: 0;
-  bottom: 0;
+  top: -300px;
+  padding-top: 350px;
+
+  bottom: -300px;
+  padding-bottom: 500px;
   right: 0;
   left: 0;
 
   overflow-y: scroll;
   overflow-x: hidden;
 
-  background: url(https://img.freepik.com/free-vector/japanese-wave-line-art-landscape-background-abstract-mountain-banner-design-pattern-vector-illustration-geometric-poster_90220-715.jpg?w=1380&t=st%3D1658224713~exp%3D1658225313~hmac%3D75f3656f5cd711dbb2a3da197cc5e94c2367e420e78bf233a985f06fa0c4d908&fbclid=IwAR1w7pZ93EPwnvC-jX6KErRv5BIoAbfkAgKS6CeXIUv3vgusFhQPedc1gx0);
+  background-color: #8bc6ec;
+  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+
+  /* background: url(https://img.freepik.com/free-vector/japanese-wave-line-art-landscape-background-abstract-mountain-banner-design-pattern-vector-illustration-geometric-poster_90220-715.jpg?w=1380&t=st%3D1658224713~exp%3D1658225313~hmac%3D75f3656f5cd711dbb2a3da197cc5e94c2367e420e78bf233a985f06fa0c4d908&fbclid=IwAR1w7pZ93EPwnvC-jX6KErRv5BIoAbfkAgKS6CeXIUv3vgusFhQPedc1gx0);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
 }
 /*main button to trigger the library*/
+.library-header {
+  display: flex;
+}
 .wish-library-button {
   cursor: pointer;
   position: fixed;
@@ -69,25 +77,24 @@
 
 .button-35 {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  top: 385px;
+  right: 2em;
   align-items: center;
-  background-color: #fff;
-  border-radius: 12px;
+  background-color: black;
+  border-radius: 5px;
   box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
   box-sizing: border-box;
-  color: #121212;
+  color: white;
   cursor: pointer;
   display: inline-flex;
   flex: 1 1 auto;
   font-family: Inter, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
   justify-content: center;
   line-height: 1;
   margin: 0;
   outline: none;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1.1rem;
   text-align: center;
   text-decoration: none;
   transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
@@ -98,9 +105,6 @@
   touch-action: manipulation;
 }
 
-.button-35:hover {
-  box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
-}
 /*libraray button*/
 .button-50 {
   position: absolute;
@@ -154,4 +158,9 @@
   .button-50 {
     padding: 12px 50px;
   }
+}
+
+.book-icon {
+  width: 12rem;
+  display: inline-block;
 }

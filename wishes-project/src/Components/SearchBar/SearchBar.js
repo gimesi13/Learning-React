@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
+import { AnimatePresence, motion } from "framer-motion";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const SearchBar = (props) => {
   const wishes = props.filteredWishes;
@@ -12,6 +14,7 @@ const SearchBar = (props) => {
   //eventlistener
   const ListenToChange = (e) => {
     setSearchValue(e.target.value);
+    //animation for search items
   };
 
   //filter the array to find if it includes the search value
@@ -63,43 +66,73 @@ const SearchBar = (props) => {
           onChange={ListenToChange}
           placeholder="Search..."
         />
-        {ShouldDisplayButton && (
-          <div className="button-59" onClick={HandleClearButton}>
-            clear
-          </div>
-        )}
+        <select className="select" onChange={props.statusHandler}>
+          <option value="all">All</option>
+          <option value="favorites">Favorites</option>
+        </select>
+        <AnimatePresence>
+          {ShouldDisplayButton && (
+            <motion.div
+              key="clearbutton"
+              initial={{ opacity: 0, x: 300 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.1 }}
+              exit={{
+                opacity: 0,
+                x: 300,
+                transition: { duration: 0.1, ease: "easeInOut" },
+              }}
+              className="button-59"
+              onClick={HandleClearButton}
+            >
+              clear
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <ul>
-        {filteredWishes.slice(0, visible).map((wish, id, favorite) => {
-          return (
-            <li
-              className={`wish-item ${wish.favorite ? "favorite" : ""}`}
-              id={id}
-              key={id}
-            >
-              <div className="wish-text">{"“" + wish.text + "” "}</div>
-              {"-" + wish.author}
-
-              <button
-                className={`star lib ${wish.favorite ? "full" : ""}`}
-                onClick={() => {
-                  props.setWishesState(
-                    props.wishes.map((thisWish) => {
-                      if (wish.id === thisWish.id) {
-                        return { ...wish, favorite: !wish.favorite };
-                      }
-                      return thisWish;
-                    })
-                  );
+      {props.showLibrary ? (
+        <ul>
+          {filteredWishes.slice(0, visible).map((wish, id, favorite) => {
+            return (
+              <motion.li
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  delay: (id - (visible - 15)) * 0.05,
+                  when: "beforeChildren",
                 }}
+                className={`wish-item ${wish.favorite ? "favorite" : ""}`}
+                id={id}
+                key={id}
               >
-                {` ${wish.favorite ? "★" : "☆"}`}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+                <div className="wish-text">{"“" + wish.text + "” "}</div>
+                {"-" + wish.author}
+
+                <motion.div
+                  whileTap={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  className={`star lib ${wish.favorite ? "full" : ""}`}
+                  onClick={() => {
+                    props.setWishesState(
+                      props.wishes.map((thisWish) => {
+                        if (wish.id === thisWish.id) {
+                          return { ...wish, favorite: !wish.favorite };
+                        }
+                        return thisWish;
+                      })
+                    );
+                  }}
+                >
+                  {wish.favorite ? <AiFillStar /> : <AiOutlineStar />}
+                </motion.div>
+              </motion.li>
+            );
+          })}
+        </ul>
+      ) : (
+        ""
+      )}
       {canLoadMore && (
         <button className="load-more-button button-59" onClick={showMoreItems}>
           Load more
