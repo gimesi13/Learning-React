@@ -23,7 +23,7 @@ const Form = ({ setInputText, todos, setTodos, inputText, setStatus }) => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <form>
         <input
           value={inputText}

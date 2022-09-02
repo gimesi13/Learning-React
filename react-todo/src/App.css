@@ -4,13 +4,39 @@
   box-sizing: border-box;
 }
 body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  overflow-x: hidden;
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   color: white;
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
 }
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  flex: 1;
+}
 header {
   font-size: 2rem;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+h1 {
+  padding: 2rem;
+  text-align: center;
 }
 
 header,
@@ -19,6 +45,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80%;
 }
 form input,
 form button {
@@ -26,6 +53,9 @@ form button {
   font-size: 2rem;
   border: none;
   background: white;
+}
+form input {
+  width: 40%;
 }
 form button {
   color: #ff6f47;
@@ -45,6 +75,7 @@ form button:hover {
 
 .todo-list {
   min-width: 30%;
+  max-width: 90vw;
   list-style: none;
 }
 
@@ -78,7 +109,9 @@ form button:hover {
   background: rgb(11, 212, 162);
 }
 .todo-item {
+  min-width: 20vw;
   padding: 0rem 0.5rem;
+  overflow-x: hidden;
 }
 
 .fa-trash,
@@ -118,7 +151,7 @@ select {
   color: #ff6f47;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
-  width: 12rem;
+  width: 8rem;
 }
 /* Arrow */
 .select::after {

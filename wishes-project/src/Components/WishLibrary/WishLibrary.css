@@ -6,19 +6,22 @@
   font-size: 0.8em;
 }
 .wish-library ul {
-  margin-left: 2%;
-  margin-right: 7%;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
-  margin-top: 1em;
   z-index: 10;
   gap: 0.5em;
+  padding-top: 0;
 }
 .wish-library h1 {
   margin-left: -3.5rem;
   font-size: 2.5rem;
   display: inline-block;
   align-self: flex-end;
+}
+
+.wish-item {
+  padding-right: 1rem;
 }
 .wish-library {
   z-index: 1;
@@ -163,4 +166,10 @@
 .book-icon {
   width: 12rem;
   display: inline-block;
+}
+
+@media (max-width: 556px) {
+  .book-icon {
+    width: 10rem;
+  }
 }
